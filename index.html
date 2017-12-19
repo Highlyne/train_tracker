@@ -25,21 +25,29 @@
         <th>Arrival</th>
         <tr><div span id="arvLoc"></div>></tr>
     </table>
-    <form action="/action_page.php">
-        First name:<br>
-        <input type="text" value="trainName">
-        <br>
-        Departure:<br>
-        <input type="text" value="depLocation">
-        <br>
-        Arrival:<br>
-        <input type="text"  value="arrLocation">
-        <br><br>
-        <input type="submit" value="Submit">
-      </form>
-    
+    <div>
+            <form role="form">
+                    <div class="form-group">
+                      <label for="name-input">Train Name:</label>
+                      <input class="form-control" id="trainName" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="departure-input">Departure Location:</label>
+                      <input class="form-control" id="depLocation" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="arrival-input">Arrival Location:</label>
+                      <input class="form-control" id="arrLocation" type="text">
+                    </div>
+                    <button class="btn btn-default" id="btn-submit" type="submit">Submit</button>
+                  </form>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="javascript.js"></script>
 </body>
-<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-<script type="script" src="https://code.jquery.com/jquery.js"></script>
-<script type="script" src="javascript.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+-->
 </html>
