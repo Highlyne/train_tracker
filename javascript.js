@@ -15,30 +15,30 @@ console.log("this is connected");
   var database= firebase.database();
 
   var name ="";
-  var departure ="";
-  var arrival = "";
+  var dest ="";
+  var freq = "";
 
   $("#btn-submit").on("click", function(event) {
       event.preventDefault();
-      console.log("this works" + name);
+      
       name = $("#trainName").val()
-      departure = $("#depLocation").val();
-      arrival = $("#arrLocation").val();
-      console.log("this works" + departure);
-      console.log("this works" + arrival);
+      freq = $("#frequency").val();
+      dest = $("#arrLocation").val();
+      console.log("freq works" + freq);
+      console.log("dest works" + dest);
 
-      database.ref().set( {
-          trainName: name,
-          departure: departure,
-          arrival: arrival
+      // database.ref().push( {
+      //     trainName: name,
+      //     destination: dest,
+      //     frequency: freq
       });
-  });
+  // });
 
-  database.ref().on("value", function(snapshot){
+  // database.ref().on("value", function(snapshot){
 
-    $("#name").text(snapshot.val().trainName);
-    $("#depLoc").text(snapshot.val().departure);
-    $("#arvLoc").text(snapshot.val().arrival);
-  })
+  //   $("#name").text(snapshot.val().trainName);
+  //   $("#depLoc").text(snapshot.val().departure);
+  //   $("#arvLoc").text(snapshot.val().arrival);
+  // })
  
 
