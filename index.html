@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -15,29 +16,38 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<link rel = "stylesheet" type = "text/css" href = "stylesheet.css">
+
 <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 </head>
 <body>
-  <div class="jumbotron">
+  <div class="container">
+    <br>
+  <div class="jumbotron text-center">
     <h1>Train Tracker</h1>
   </div>
+  <br>
+  <br>
 
   <div class="panel panel-primary">
       <div class="panel-heading">Train Schedule</div>
       <table class="table">
+        <tbody>
         <tr>
           <th>Name</th>
-          <th>Departure</th>
-          <th>Arrival</th>
+          <th>Destination</th>
           <th>Frequency (min)</th>
           <th>Next Arrival</th>
           <th>Minutes Away</th>
         </tr>
         <tr>
           <td><div span id="name"></div></td>
-          <td><div span id="depLoc"></div></td>
-          <td><div span id="arvLoc"></div></td> 
+          <td><div span id="arvLoc"></div></td>
+          <td><div span id="freq"></div></td> 
+          <td><div span id="next"></div></td> 
+          <td><div span id="minAway"></div></td>  
         </tr>
+      </tbody>
     </table>
       </div>
 
@@ -47,10 +57,6 @@
                   <div class="form-group">
                     <label for="name-input">Train Name:</label>
                     <input class="form-control" id="trainName" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label for="departure-input">Departure Location:</label>
-                    <input class="form-control" id="depLocation" type="text">
                   </div>
                   <div class="form-group">
                     <label for="arrival-input">Arrival Location:</label>
@@ -66,7 +72,7 @@
                   </div>
                   <button class="btn btn-default" id="btn-submit" type="submit">Submit</button>
                 </form>
-                  
+    </div>      
     </div>
 
 
