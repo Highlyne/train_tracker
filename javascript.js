@@ -34,3 +34,11 @@ console.log("this is connected");
       });
   });
 
+  database.ref().on("value", function(snapshot){
+
+    $("#name").text(snapshot.val().trainName);
+    $("#depLoc").text(snapshot.val().departure);
+    $("#arvLoc").text(snapshot.val().arrival);
+  })
+ 
+
