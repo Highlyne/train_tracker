@@ -26,4 +26,11 @@ console.log("this is connected");
       arrival = $("#arrLocation").val();
       console.log("this works" + departure);
       console.log("this works" + arrival);
-  })
+
+      database.ref().set( {
+          trainName: name,
+          departure: departure,
+          arrival: arrival
+      });
+  });
+
