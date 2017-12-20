@@ -38,7 +38,7 @@ console.log("this is connected");
         firsttr: firsttr
       }
       
-      database.ref().push({train});
+      database.ref().push(train);
 
      $("#trainName").val("");
      $("#frequency").val("");
@@ -70,6 +70,7 @@ console.log("this is connected");
     // $("#email-display").text(sv.email);
     // $("#age-display").text(sv.age);
     // $("#comment-display").text(sv.comment);
+
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
