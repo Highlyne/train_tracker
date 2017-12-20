@@ -12,12 +12,15 @@ console.log("this is connected");
 
   firebase.initializeApp(config);
 
+  var clock = Date();
   var database= firebase.database();
 
   var name ="";
   var dest ="";
   var freq = "";
   var firsttr ="";
+
+  $("#time_clock").text(clock);
 
   $("#btn-submit").on("click", function(event) {
       event.preventDefault();
@@ -26,8 +29,6 @@ console.log("this is connected");
       freq = $("#frequency").val();
       dest = $("#arrLocation").val();
       firsttr = $("#trainTime").val();
-      console.log("freq works" + freq);
-      console.log("dest works" + firsttr);
 
       database.ref().push( {
           trainName: name,
@@ -38,11 +39,22 @@ console.log("this is connected");
       $("input").text("");
   });
 
-  // database.ref().on("value", function(snapshot){
+  database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+    // storing the snapshot.val() in a variable for convenience
+    var sv = snapshot.val();
 
-  //   $("#name").text(snapshot.val().trainName);
-  //   $("#depLoc").text(snapshot.val().departure);
-  //   $("#arvLoc").text(snapshot.val().arrival);
-  // })
- 
+    // Console.loging the last user's data
+    console.log(sv.name);
+    console.log(sv.dest);
+    console.log(sv.frequency);
+    console.log(sv.firstTrain);
+
+    // Change the HTML to reflect
+    // $("#name-display").text(sv.name);
+    // $("#email-display").text(sv.email);
+    // $("#age-display").text(sv.age);
+    // $("#comment-display").text(sv.comment);
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
 
