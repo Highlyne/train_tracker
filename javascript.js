@@ -12,7 +12,9 @@ console.log("this is connected");
 
   firebase.initializeApp(config);
 // check out moment(); to give you exact time and date 
-  var clock = Date();
+  var clock = moment();
+
+  
   var database= firebase.database();
 
   var name;
@@ -66,10 +68,10 @@ console.log("this is connected");
     // console.log(sv.firstTrain);
 
     // Change the HTML to reflect
-    // $("#name-display").text(sv.name);
-    // $("#email-display").text(sv.email);
-    // $("#age-display").text(sv.age);
-    // $("#comment-display").text(sv.comment);
+    $("#name-display").text(sv.name);
+    $("#email-display").text(sv.email);
+    $("#age-display").text(sv.age);
+    $("#comment-display").text(sv.comment);
 
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
