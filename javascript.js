@@ -11,43 +11,59 @@ console.log("this is connected");
   };
 
   firebase.initializeApp(config);
-
+// check out moment(); to give you exact time and date 
   var clock = Date();
   var database= firebase.database();
 
-  var name ="";
-  var dest ="";
-  var freq = "";
-  var firsttr ="";
+  var name;
+  var dest;
+  var freq;
+  var firsttr;
 
   $("#time_clock").text(clock);
 
   $("#btn-submit").on("click", function(event) {
       event.preventDefault();
       
-      name = $("#trainName").val()
-      freq = $("#frequency").val();
-      dest = $("#arrLocation").val();
-      firsttr = $("#trainTime").val();
+      name = $("#trainName").val().trim();
+      freq = $("#frequency").val().trim();
+      dest = $("#arrLocation").val().trim();
+      firsttr = $("#trainTime").val().trim();
 
-      database.ref().push( {
-          trainName: name,
-          destination: dest,
-          frequency: freq,
-          firstTrain: firsttr
-      });
-      $("input").text("");
+    
+      var train = {
+        name: name,
+        dest: dest,
+        freq: freq,
+        firsttr: firsttr
+      }
+      
+      database.ref().push({train});
+
+     $("#trainName").val("");
+     $("#frequency").val("");
+     $("#arrLocation").val("");
+     $("#trainTime").val("");
   });
 
-  database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+  database.ref().on("child_added", function(snapshot) {
     // storing the snapshot.val() in a variable for convenience
-    var sv = snapshot.val();
+    // var sv = snapshot.val();
+
+    console.log(snapshot.val());
+
+    var childName = snapshot.val().name;
+    var childDestination = snapshot.val().dest;
+    var childFrequency = snapshot.val().freq;
+    var childFirstTrain = snapshot.val().firsttr;
+
+    console.log(childDestination, childName, childFrequency, childFirstTrain);
 
     // Console.loging the last user's data
-    console.log(sv.name);
-    console.log(sv.dest);
-    console.log(sv.frequency);
-    console.log(sv.firstTrain);
+    // console.log(sv.name);
+    // console.log(sv.dest);
+    // console.log(sv.frequency);
+    // console.log(sv.firstTrain);
 
     // Change the HTML to reflect
     // $("#name-display").text(sv.name);
@@ -57,4 +73,5 @@ console.log("this is connected");
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
+
 
