@@ -73,7 +73,42 @@ console.log("this is connected");
     $("#freq").text(childFrequency);
 
 
-  }, function(errorObject) {
+    //Parse the frequency "string" into an integer | Obtain current time & log
+    var frequency = parseInt(freq);
+    console.log("Current Time: " + moment().format('HH:mm'));
+
+    //Converting time of new train (firstTrain) and retrieving current time and converting it to miltary format (HH:mm) and logging the results
+    var dateConvert = moment(snapshot.val().firsttr, 'HH:mm').subtract(1, 'years');
+    console.log("Date converted: " + dateConvert);
+    var trainTime = moment(dateConvert).format('HH:mm');
+    console.log("Train Time : " + trainTime);
+
+    //Calculating difference between the two times
+    var timeConvert = moment(trainTime, 'HH:mm').subtract(1, 'years');
+    var timeDiff = moment().diff(moment(timeConvert), 'minutes');
+    console.log("Difference in Times: " + timeDiff);
+
+    //Using Modulus % to calculate the remainder
+    var timeRemain = timeDiff % frequency;
+    console.log("First Train arrives: " + timeRemain);
+
+    //Frequency minus timeRemain (modulus) yeilds minutes until arrival
+    var minutesAway = frequency - timeRemain;
+    console.log("Minutes until next Train: " + minutesAway);
+
+    //Adding minutes away to the current time to project the trains arrival time and console logs the result in military format
+    var firstTrain = moment().add(minutesAway, 'minutes');
+    console.log("Arrival time: " + moment(firstTrain).format('HH:mm'));
+
+    //Appending new dataset to the HTML table
+    $("#next").text(moment(firstTrain).format("HH:mm"));
+    $("#minAway").text(minutesAway);
+
+        // "</td><td id='nextDisplay'>" + moment(firstTrain).format("HH:mm") +
+        // "</td><td id='awayDisplay'>" + minutesAway + ' minutes until arrival' + "</td></tr>");
+  }, 
+  
+  function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
 
