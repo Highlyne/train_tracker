@@ -17,7 +17,7 @@ console.log("this is connected");
   var name ="";
   var dest ="";
   var freq = "";
-  var firstTr ="";
+  var firsttr ="";
 
   $("#btn-submit").on("click", function(event) {
       event.preventDefault();
@@ -25,16 +25,17 @@ console.log("this is connected");
       name = $("#trainName").val()
       freq = $("#frequency").val();
       dest = $("#arrLocation").val();
-      firstTr = $("#trainTime").val();
+      firsttr = $("#trainTime").val();
       console.log("freq works" + freq);
-      console.log("dest works" + dest);
+      console.log("dest works" + firsttr);
 
       database.ref().push( {
           trainName: name,
           destination: dest,
           frequency: freq,
-          firstTrain: ftrain
+          firstTrain: firsttr
       });
+      $("input").text("");
   });
 
   // database.ref().on("value", function(snapshot){
