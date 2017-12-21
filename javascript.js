@@ -12,7 +12,7 @@ console.log("this is connected");
 
   firebase.initializeApp(config);
 // check out moment(); to give you exact time and date 
-  var clock = moment();
+  var clock = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 
   var database= firebase.database();
