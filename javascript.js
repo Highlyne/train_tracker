@@ -11,67 +11,60 @@ console.log("this is connected");
   };
 
   firebase.initializeApp(config);
-// check out moment(); to give you exact time and date 
-  var clock = moment().format('MMMM Do YYYY, h:mm:ss a');
+// moment js gives exact time
+  var clock = moment().format('LLLL');
 
 
   var database= firebase.database();
 
-  var name;
+  // I console logged this vars out so I can define the below; trying to get trName to show
+  var trName;
   var dest;
   var freq;
   var firsttr;
 
+  // putting time on the front page
   $("#time_clock").text(clock);
 
+  // Everything I want to happen when the submit button is clicked
   $("#btn-submit").on("click", function(event) {
       event.preventDefault();
       
-      name = $("#trainName").val().trim();
+      //very strange that the trainName and frequency is not picking up during click of btn
+      trName = $("#trnName").val().trim();
       freq = $("#frequency").val().trim();
-      dest = $("#arrLocation").val().trim();
+      //dest and firsttr does pick up and shows in the console log when submit btn is clicked
+     dest = $("#arrLocation").val().trim();
       firsttr = $("#trainTime").val().trim();
+      console.log("looking for train name: " + trName);
+      console.log("I really need to see " + freq);
 
-    
       var train = {
-        name: name,
+        trName: trName,
         dest: dest,
         freq: freq,
         firsttr: firsttr
       }
       
       database.ref().push(train);
-
-     $("#trainName").val("");
+// This will clear my form fields after btn has been clicked
+     $("#trnName").val("");
      $("#frequency").val("");
      $("#arrLocation").val("");
      $("#trainTime").val("");
   });
 
   database.ref().on("child_added", function(snapshot) {
-    // storing the snapshot.val() in a variable for convenience
-    // var sv = snapshot.val();
-
     console.log(snapshot.val());
-
-    var childName = snapshot.val().name;
+//Everything in the object console logs except for the train name and freq
+    var childName = snapshot.val().trName;
     var childDestination = snapshot.val().dest;
     var childFrequency = snapshot.val().freq;
     var childFirstTrain = snapshot.val().firsttr;
 
     console.log(childDestination, childName, childFrequency, childFirstTrain);
 
-    // Console.loging the last user's data
-    // console.log(sv.name);
-    // console.log(sv.dest);
-    // console.log(sv.frequency);
-    // console.log(sv.firstTrain);
-
-    // Change the HTML to reflect
-    // $("#name").append(childName);
-    // $("#arvLoc").append(childDestination);
-    // $("#freq").append(childFrequency);
-
+    //none of this below works properly now that freq will not git picked up from the click of the button
 
     //Parse the frequency "string" into an integer | Obtain current time & log
     var frequency = parseInt(childFrequency);
@@ -100,7 +93,7 @@ console.log("this is connected");
     var firstTrain = moment().add(minutesAway, 'minutes');
     console.log("Arrival time: " + moment(firstTrain).format('HH:mm'));
 
-    //Appending new dataset to the HTML table
+    //Appending new data to the HTML table
     $("table").append(
       
       "<tr><td>" + childName + 
@@ -110,7 +103,7 @@ console.log("this is connected");
       "</td><td id='minAway'>" + minutesAway + ' minutes until arrival' + "</td></tr>"
       );
   }, 
-  
+  // run this to log out any errors
   function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
