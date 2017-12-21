@@ -68,13 +68,13 @@ console.log("this is connected");
     // console.log(sv.firstTrain);
 
     // Change the HTML to reflect
-    $("#name").text(childName);
-    $("#arvLoc").text(childDestination);
-    $("#freq").text(childFrequency);
+    // $("#name").append(childName);
+    // $("#arvLoc").append(childDestination);
+    // $("#freq").append(childFrequency);
 
 
     //Parse the frequency "string" into an integer | Obtain current time & log
-    var frequency = parseInt(freq);
+    var frequency = parseInt(childFrequency);
     console.log("Current Time: " + moment().format('HH:mm'));
 
     //Converting time of new train (firstTrain) and retrieving current time and converting it to miltary format (HH:mm) and logging the results
@@ -101,11 +101,14 @@ console.log("this is connected");
     console.log("Arrival time: " + moment(firstTrain).format('HH:mm'));
 
     //Appending new dataset to the HTML table
-    $("#next").text(moment(firstTrain).format("HH:mm"));
-    $("#minAway").text(minutesAway);
-
-        // "</td><td id='nextDisplay'>" + moment(firstTrain).format("HH:mm") +
-        // "</td><td id='awayDisplay'>" + minutesAway + ' minutes until arrival' + "</td></tr>");
+    $("table").append(
+      
+      "<tr><td>" + childName + 
+     "</td><td>" + childDestination +
+      "</td><td>" + childFrequency +
+      "</td><td id='next'>" + moment(firstTrain).format("HH:mm") +
+      "</td><td id='minAway'>" + minutesAway + ' minutes until arrival' + "</td></tr>"
+      );
   }, 
   
   function(errorObject) {

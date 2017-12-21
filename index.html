@@ -34,8 +34,8 @@
 <h2><div span id="time_clock"></div></h2>
   <div class="panel panel-primary">
       <div class="panel-heading">Train Schedule</div>
-      <table class="table">
-        <tbody>
+      <table id="table">
+        <thead>
         <tr>
           <th>Name</th>
           <th>Destination</th>
@@ -43,13 +43,15 @@
           <th>Next Arrival</th>
           <th>Minutes Away</th>
         </tr>
+        </thead>
+        <body>
         <tr>
-          <td><div span id="name"></div></td>
-          <td><div span id="arvLoc"></div></td>
-          <td><div span id="freq"></div></td> 
-          <td><div span id="next"></div></td> 
-          <td><div span id="minAway"></div></td>  
-        </tr>
+          <td><div span id="trainName"></div></td>
+          <td><div span id="destination"></div></td>
+          <td><div span id="frequency"></div></td> 
+          <td><div span id="nxtArrival"></div></td>
+          <td><div span id="minsAway"></div></td>
+            </tr>  
       </tbody>
     </table>
       </div>
