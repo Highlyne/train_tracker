@@ -4,7 +4,7 @@
     height: 350px;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
-    background: url('./trainstation.jpg') no-repeat center center;
+    background: url('./images/trainstation.jpg') no-repeat center center;
   }
 
   #table {
