@@ -62,3 +62,6 @@ typings/
 
 # Mac User
 .DS_Store
+
+# eslint config object
+.eslintrc.json
