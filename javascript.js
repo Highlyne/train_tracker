@@ -1,4 +1,4 @@
-console.log("this is connected");
+// console.log("this is connected");
 
   // Initialize Firebase
   var config = {
